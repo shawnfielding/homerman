@@ -1,0 +1,23 @@
+{
+  "name": "homerman",
+  "version": "1.0.0",
+  "description": "like hangman but more simpsonsy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawnfielding/homerman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shawnfielding/homerman/issues"
+  },
+  "homepage": "https://github.com/shawnfielding/homerman#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "request-json": "^0.6.2"
+  }
+}

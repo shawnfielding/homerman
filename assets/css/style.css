@@ -1,0 +1,134 @@
+.jumbotron {
+  background-color: rgba(255, 255, 255, .5) !important;
+  background-image: url('../images/Clouds.png');
+  background-blend-mode: color;
+  background-size: cover;
+  /*height: 20%*/
+}
+
+
+#masterContainer {
+
+}
+
+h1, h2, .statsArea {
+  font-family: 'Rock Salt', cursive;
+  color: rgb(245,215,0);
+}
+
+h1, h2 {
+  font-size: xx-large;
+  -webkit-text-stroke: .5px black;
+  font-weight: 900;
+}
+
+#homer {
+  background-image: url('../images/homer.png');
+  background-size: cover;
+  height: 100%
+}
+
+.jumbotron{
+margin-left: 0;
+
+}
+
+
+td {
+  border-style: none;
+  padding-right: 2em;
+  border-width: thick;
+}
+
+#cvr
+.header{
+  height: 120px;
+  line-height: normal;
+  margin: 10px 50px 25px 100px;
+}
+
+.statsArea{
+  background: gray;
+  line-height: 3em;
+  font-size: large;
+
+}
+
+.stats{
+  display: inline-block;
+  margin-left: 5%;
+}
+
+progress{
+  border: 5px solid gray;
+}
+
+#wordTable{
+  height: 100px;
+}
+
+#head {
+position: absolute;
+width: 100%;
+top: 0px;
+left: 0px;
+height: 42%;
+background-color: pink;
+}
+
+#leftarm {
+position: absolute;
+width: 33%;
+top: 42%;
+height: 30%;
+left: 0px;
+background-color: yellow;
+display: inline-block;
+}
+
+#chest {
+position: absolute;
+width: 33%;
+top: 42%;
+height: 30%;
+left: 33%;
+background-color: green;
+display: inline-block;
+}
+
+#rightarm {
+position: absolute;
+width: 34%;
+top: 42%;
+height: 30%;
+left: 66%;
+background-color: purple;
+display: inline-block;
+}
+
+#waist{
+  position: absolute;
+  width: 100%;
+  top: 72%;
+  left: 0px;
+  height: 15%;
+  background-color: pink;
+}
+#leftleg{
+  position: absolute;
+  width: 50%;
+  top: 87%;
+  left: 0px;
+  height: 15%;
+  background-color: white;
+  display: inline-block;
+}
+#rightleg {
+  position: absolute;
+  width: 50%;
+  top: 87%;
+  left: 50%;
+  height: 15%;
+  background-color: black;
+  display: inline-block;
+}
