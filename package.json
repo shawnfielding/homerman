@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/shawnfielding/homerman#readme",
   "dependencies": {
-    "express": "^4.15.3",
     "request-json": "^0.6.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "path": "^0.12.7"
   }
 }
