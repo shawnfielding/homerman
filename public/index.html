@@ -70,11 +70,8 @@
 					var theNumber = parseInt(event.key);
 					$('.modal').modal('hide');
 					$.post('/', {numberOfLetters: theNumber}, function(data){
-							console.log("the number of spaces is " + typeof data);
-							var numberOfSpaces = parseInt(data)
-							console.log("the number of spaces is " + typeof numberOfSpaces);
+							var numberOfSpaces = parseInt(data);
 								for (var i = 0 ; i < numberOfSpaces; i++) {
-									console.log("Im supposed to write wordSpaces")
 								$(".wordSpace").append("<h3>_</h3>")
 						};
 					});
