@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<title>Homerman</title>
+</head>
+
+<body>
+	<div class="modal fade in" id="myModal">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<H1>Modal header</H1>
+		</div>
+		<div class="modal-body">
+			<h2>How many letters would you like?</h2>
+		</div>
+	</div>
+	<div class="container" id="fadeContainer">
+		<div class="container" id="mainContainer">
+			<div class="jumbotron">
+				<H2>HOMERMAN!!!</H2>
+				<div class="row">
+					<div class="col-xs-12 statsArea ">
+						<div class="stats " id="letterDiv ">Choice: <span id="letter "></span></div>
+						<div class="stats " id="lettersDiv ">Chosen: <span id="letters "></span></div>
+						<div class="stats " id="misses ">Missed: <span id="miss ">0</span></div>
+						<div class="stats " id="winsDiv ">Wins: <span id="wins ">0</span></div>
+						<div class="stats " id="lossesDiv ">Losses: <span id="losses ">0</span></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 wordSpace"></div>
+				</div>
+				<div class="row mainrow ">
+					<div class="col-xs-12 col-md-6 homer ">
+						<img src="/images/homer.png " alt="OOPS! SOMETHING WENT WRONG! " width="99% ">
+						<div class="cover " id="head"></div>
+						<div class="cover " id="leftarm"></div>
+						<div class="cover " id="chest">
+
+
+						</div>
+						<div class="cover " id="rightarm"></div>
+						<div class="cover " id="waist"></div>
+						<div class="cover " id="leftleg"></div>
+						<div class="cover " id="rightleg"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <script src="assets/js/rndmwrd.js "></script>
+	<script src="assets/js/hangmanobject.js "></script>
+	<script src="assets/js/interfaceControl.js "></script>
+	<script src="assets/js/gameinstantiation.js "></script> -->
+
+		<script>
+			//This starts the whole shbang!
+			$(document).ready(function() {
+				$('.modal').modal('show');
+
+
+				document.onkeyup = function(event) {
+					var theNumber = parseInt(event.key);
+					$('.modal').modal('hide');
+					$.post('/', {numberOfLetters: theNumber}, function(data){
+							console.log("the number of spaces is " + typeof data);
+							var numberOfSpaces = parseInt(data)
+							console.log("the number of spaces is " + typeof numberOfSpaces);
+								for (var i = 0 ; i < numberOfSpaces; i++) {
+									console.log("Im supposed to write wordSpaces")
+								$(".wordSpace").append("<h3>_</h3>")
+						};
+					});
+						//makeTheSpace("boogers");
+					};
+
+				});
+			// $(window).on('load', function() {
+			// 	$('#').modal('show');
+			// });
+
+			// document.onKeyUp = function(chosenkey) {
+			// 	console.log("made it somehow to the onKeyup. ");
+			// 	//change the chosen key into a string.
+			// 	if (chosenkey.keyCode >= 65 & chosenkey.keyCode <= 90) {
+			// 		var chnum = chosenkey.keyCode;
+			// 		theLetter = String.fromCharCode(chnum);
+			// 		newGame.gameLettersTriedLogic(theLetter);
+			// 	} else {
+			// 		alert("That is not a letter. ");
+			// 	}
+			// }
+		</script>
+</body>
+
+</html>
