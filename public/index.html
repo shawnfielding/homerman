@@ -70,9 +70,10 @@
 					var theNumber = parseInt(event.key);
 					$('.modal').modal('hide');
 					$.post('/', {numberOfLetters: theNumber}, function(data){
-							var numberOfSpaces = parseInt(data);
+							var numberOfSpaces = (data.length);
+								console.log(data);
 								for (var i = 0 ; i < numberOfSpaces; i++) {
-								$(".wordSpace").append("<h3>_</h3>")
+								$(".wordSpace").append("<h3>_</h3> "+ data[i])
 						};
 					});
 						//makeTheSpace("boogers");
