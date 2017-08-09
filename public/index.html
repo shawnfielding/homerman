@@ -69,12 +69,48 @@
 				// show the modal
 				$('.modal').modal('show');
 				document.onkeyup = function(event) {
-					var keyUpTimes = 1;
-					if (theGame.incorrectLetters.length < 7) {
-						if (event.key.charCode >= 97 && event.key.charCode <= 122) {
+					if (keyUpTimes == 0){
+						keyUpTimes = 1;
+						theGame.theNumber = parseInt(event.key);
+						if (theGame.theNumber > 2 && theGame.theNumber < 10) {
+							// make the appropriate number of spaces
+							for (var i = 0; i < theGame.theNumber; i++) {
+								$(".wordSpace").append("<H3>_</h3>")
+							};
+
+							// hide the modal
+							$('.modal').modal('hide');
+
+							// get the word
+							$.post('/', {
+								numberOfLetters: theNumber
+							}, function(data) {
+								var numberOfSpaces = (data.length);
+								console.log(data);
+								theGame.theWord = data
+							});
+							//makeTheSpace("boogers");
+						} else {
+							alert("No way, Jose. At least 3 letters.")
+						}
+					} else if(event.key.charCode >= 97 && event.key.charCode <= 122) {
 							theGame.chosenLetters.push(event.key);
 							if (theGame.theWord.indexOf(event.key) > -1) {
-							$("h3.indexOf(event.key).html(event.key)")
+								$("h3.indexOf(event.key).html(event.key)"
+
+							}
+
+
+					}
+
+
+					}
+
+					var keyUpTimes = 1;
+					if (theGame.incorrectLetters.length < 7) {
+						if
+
+							)
 							}	else {
 								theGame.incorrectLetters.push(event.key)
 								return
@@ -86,29 +122,7 @@
 				} else {
 							alert("Sorry, you lost.");
 					}
-					theGame.theNumber = parseInt(event.key);
-					if (theGame.theNumber > 2 && theGame.theNumber < 10) {
-						// make the appropriate number of spaces
-						for (var i = 0; i < theGame.theNumber; i++) {
-							$(".wordSpace").append("<H3>_</h3>")
-						};
 
-						// hide the modal
-						$('.modal').modal('hide');
-
-						// get the word
-						$.post('/', {
-							numberOfLetters: theNumber
-						}, function(data) {
-							var numberOfSpaces = (data.length);
-							console.log(data);
-							theGame.theWord = data
-						});
-						//makeTheSpace("boogers");
-					} else {
-						alert("No way, Jose. At least 3 letters.")
-					};
-				};
 			});
 
 
