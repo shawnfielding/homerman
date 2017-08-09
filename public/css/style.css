@@ -6,7 +6,6 @@
   /*height: 20%*/
 }
 
-
 #masterContainer {
 
 }
@@ -40,7 +39,6 @@ margin-left: 0;
 text-align: center;
 
 }
-
 
 td {
   border-style: none;
@@ -77,10 +75,20 @@ progress{
 
 #head {
 position: absolute;
-width: 100%;
+width: 66%;
 top: 0px;
 left: 0px;
 height: 42%;
+}
+
+#head2 {
+position: absolute;
+width: 33%;
+top: 0px;
+left: 66%;
+height: 42%;
+background-color: white;
+display: inline-block;
 }
 
 #leftarm {

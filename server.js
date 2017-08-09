@@ -27,7 +27,8 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   var num = parseInt(req.body.numberOfLetters);
-  request('http://www.wordbyletter.com/words_starting_with.php?q=a&letters=' + num, function(err, response, body) {
+  var lett = String.fromCharCode(Math.floor(Math.random() * (122 - 97)) + 97)
+  request('http://www.wordbyletter.com/words_starting_with.php?q=' + lett + '&letters=' + num, function(err, response, body) {
     if (err) {
       return console.error("theres an " + err);
     };
