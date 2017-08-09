@@ -12,18 +12,17 @@
 </head>
 
 <body>
-	<div class="modal fade in" id="myModal">
-		<div class="modal-header">
-			<a class="close" data-dismiss="modal">×</a>
-			<H1>Modal header</H1>
-		</div>
-		<div class="modal-body">
-			<h2>How many letters would you like?</h2>
-		</div>
-	</div>
 	<div class="container" id="fadeContainer">
 		<div class="container" id="mainContainer">
 			<div class="jumbotron">
+				<div class="modal fade in" id="myModal">
+					<div class="modal-header">
+						<H1>Modal header</H1>
+					</div>
+					<div class="modal-body">
+						<h2>How many letters would you like?</h2>
+					</div>
+				</div>
 				<H2>HOMERMAN!!!</H2>
 				<div class="row">
 					<div class="col-xs-12 statsArea ">
@@ -42,10 +41,7 @@
 						<img src="/images/homer.png " alt="OOPS! SOMETHING WENT WRONG! " width="99% ">
 						<div class="cover " id="head"></div>
 						<div class="cover " id="leftarm"></div>
-						<div class="cover " id="chest">
-
-
-						</div>
+						<div class="cover " id="chest"></div>
 						<div class="cover " id="rightarm"></div>
 						<div class="cover " id="waist"></div>
 						<div class="cover " id="leftleg"></div>
@@ -63,38 +59,48 @@
 		<script>
 			//This starts the whole shbang!
 			$(document).ready(function() {
-				$('.modal').modal('show');
+						$('.modal').modal('show');
+						document.onkeyup = function(event) {
+							var theNumber = parseInt(event.key);
+							if (theNumber > 2 && theNumber < 10) {
+								// make the appropriate number of spaces
+								for (var i = 0 ; i < theNumber; i++) {
+								$(".wordSpace").append("<h3>_</h3>")
+								};
 
+								// hide the modal
+								$('.modal').modal('hide');
 
-				document.onkeyup = function(event) {
-					var theNumber = parseInt(event.key);
-					$('.modal').modal('hide');
-					$.post('/', {numberOfLetters: theNumber}, function(data){
-							var numberOfSpaces = (data.length);
-								console.log(data);
-								for (var i = 0 ; i < numberOfSpaces; i++) {
-								$(".wordSpace").append("<h3>_</h3> "+ data[i])
-						};
+								// get the word
+								$.post('/', {
+									numberOfLetters: theNumber
+								}, function(data) {
+									var numberOfSpaces = (data.length);
+									console.log(data);
+								});
+								//makeTheSpace("boogers");
+							}
+							else {
+								alert("No way, Jose.")
+							};
+						}
 					});
-						//makeTheSpace("boogers");
-					};
 
-				});
-			// $(window).on('load', function() {
-			// 	$('#').modal('show');
-			// });
+					// $(window).on('load', function() {
+					// 	$('#').modal('show');
+					// });
 
-			// document.onKeyUp = function(chosenkey) {
-			// 	console.log("made it somehow to the onKeyup. ");
-			// 	//change the chosen key into a string.
-			// 	if (chosenkey.keyCode >= 65 & chosenkey.keyCode <= 90) {
-			// 		var chnum = chosenkey.keyCode;
-			// 		theLetter = String.fromCharCode(chnum);
-			// 		newGame.gameLettersTriedLogic(theLetter);
-			// 	} else {
-			// 		alert("That is not a letter. ");
-			// 	}
-			// }
+					// document.onKeyUp = function(chosenkey) {
+					// 	console.log("made it somehow to the onKeyup. ");
+					// 	//change the chosen key into a string.
+					// 	if (chosenkey.keyCode >= 65 & chosenkey.keyCode <= 90) {
+					// 		var chnum = chosenkey.keyCode;
+					// 		theLetter = String.fromCharCode(chnum);
+					// 		newGame.gameLettersTriedLogic(theLetter);
+					// 	} else {
+					// 		alert("That is not a letter. ");
+					// 	}
+					// }
 		</script>
 </body>
 

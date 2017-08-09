@@ -19,29 +19,6 @@ app.use(bodyParser.json({
 }));
 app.use(express.static(`${__dirname}/public/`));
 
-function getWord(theNum) {
-  console.log("made it to getword");
-  request('http://www.wordbyletter.com/words_starting_with.php?q=a&letters='+theNum, function (error, response, body) {
-    if (error) {
-      return console.error(err)
-    };
-    const $ = cheerio.load(body)
-    var randword = $('h2').each(function(){
-            var words = (this.next.next.data);
-            //console.log(typeof words)
-            var wordsArray = words.split(",")
-            //console.log(typeof wordsArray);
-            //console.log(wordsArray);
-            return wordsArray[Math.floor(Math.random()*wordsArray.length)];
-            //console.log(randword);
-    }).then(
-      console.log(randword);
-    );
-  });
-
-    console.log("-----------");
-    console.log("made it through getword yo");
-  }
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -50,9 +27,16 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   var num = parseInt(req.body.numberOfLetters);
-  var theRandomWord = getWord(num);
-  console.log(theRandomWord);
-  res.json(theRandomWord);
+  request('http://www.wordbyletter.com/words_starting_with.php?q=a&letters=' + num, function(err, response, body) {
+    if (err) {
+      return console.error("theres an " + err);
+    };
+    const $ = cheerio.load(body);
+    var wordSet = $('h2').parent().text();
+    var wordsArray = wordSet.split(",");
+    wordsArray.shift();
+    res.json(wordsArray[Math.floor(Math.random() * wordsArray.length)]);
+  });
 });
 
 // Starts our server
