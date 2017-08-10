@@ -18,11 +18,8 @@
 				<H2>HOMERMAN!!!</H2>
 				<div class="row">
 					<div class="col-xs-12 statsArea ">
-						<div class="stats " id="letterDiv ">Choice: <span id="letter "></span></div>
-						<div class="stats " id="lettersDiv ">Chosen: <span id="letters "></span></div>
-						<div class="stats " id="misses ">Missed: <span id="miss ">0</span></div>
-						<div class="stats " id="winsDiv ">Wins: <span id="wins ">0</span></div>
-						<div class="stats " id="lossesDiv ">Losses: <span id="losses ">0</span></div>
+						<div class="stats " id="lettersDiv">Chosen: <span id="letters "></span></div>
+						<div class="stats " id="misses">Missed: <span id="miss ">0</span></div>
 					</div>
 				</div>
 				<div class="row">
@@ -60,7 +57,8 @@
 			$(document).ready(function() {
 				// set up game control
 				var theGame = {
-					theWord: "",
+					theWord: [],
+					solvedWord: [],
 					theNumber: 0,
 					chosenLetters: [],
 					incorrectLetters: []
@@ -69,61 +67,57 @@
 				// show the modal
 				$('.modal').modal('show');
 				document.onkeyup = function(event) {
-					if (keyUpTimes == 0){
+
+					// gamestart logic
+					if (keyUpTimes == 0) {
 						keyUpTimes = 1;
 						theGame.theNumber = parseInt(event.key);
 						if (theGame.theNumber > 2 && theGame.theNumber < 10) {
 							// make the appropriate number of spaces
-							for (var i = 0; i < theGame.theNumber; i++) {
-								$(".wordSpace").append("<H3>_</h3>")
-							};
-
 							// hide the modal
 							$('.modal').modal('hide');
 
 							// get the word
 							$.post('/', {
-								numberOfLetters: theNumber
+								numberOfLetters: theGame.theNumber
 							}, function(data) {
 								var numberOfSpaces = (data.length);
 								console.log(data);
-								theGame.theWord = data
+								theGame.theWord = data.split("");
+								for (var i = 0; i < theGame.theWord.length; i++) {
+									$(".wordSpace").append("<div class ='letter' id =" + i + ">_</div>");
+								};
 							});
 							//makeTheSpace("boogers");
 						} else {
-							alert("No way, Jose. At least 3 letters.")
+							alert("No way, Jose. 3-9 letters.")
 						}
-					} else if(event.key.charCode >= 97 && event.key.charCode <= 122) {
+					} else {
+						// gameplay logic
+						console.log(typeof event.key);
+						console.log(event.key)
+						var aLetter = event.key
+						console.log(event.key.charCodeAt());
+						if (event.key.charCodeAt() >= 97 && event.key.charCodeAt() <= 122) {
 							theGame.chosenLetters.push(event.key);
+							$(".letters").html(theGame.chosenLetters);
 							if (theGame.theWord.indexOf(event.key) > -1) {
-								$("h3.indexOf(event.key).html(event.key)"
-
-							}
-
-
-					}
-
-
-					}
-
-					var keyUpTimes = 1;
-					if (theGame.incorrectLetters.length < 7) {
-						if
-
-							)
-							}	else {
-								theGame.incorrectLetters.push(event.key)
-								return
+								$("#" + theGame.theWord.indexOf(event.key)).html(event.key)
+							} else {
+								theGame.incorrectLetters.push(event.key);
+								$(".miss").html(theGame.incorrectLetters);
+								if (theGame.incorrectLetters.length > 7) {
+									alert("You Lose")
+								}
 							}
 						} else {
 							alert("That is not a letter.")
 							return
+						}
 					}
-				} else {
-							alert("Sorry, you lost.");
-					}
-
+				}
 			});
+
 
 
 

@@ -21,7 +21,7 @@ h1, h2 {
   font-weight: 900;
 }
 
-h3 {
+.letter {
   margin-left: 10%;
   font-weight: bolder;
   display: inline-block;
